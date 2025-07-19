@@ -1,3 +1,29 @@
+## Como rodar o projeto
+
+1. Clone o repositório 
+  git clone https://github.com/aderaldoneto/challenge-laravel-2025.git
+  cd challenge-laravel-2025
+
+2. Configure o .env 
+  cp .env.example .env
+
+3. Suba os containers 
+  docker-compose up -d --build
+
+4. Instale as dependências 
+  docker-compose exec app composer install
+
+5. Chave da aplicação
+  docker-compose exec app php artisan key:generate
+
+6. Execute as migrations e seeders
+  docker-compose exec app php artisan migrate:fresh --seed
+
+7. Execute os testes
+  docker-compose exec app php artisan test
+
+
+
 # Criar registros no banco de dados
 php artisan db:seed SuperAdminSeeder
 php artisan db:seed CategorySeeder

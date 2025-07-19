@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Novo Produto') }}
+            {{ __('Nuevo Producto') }}
         </h2>
     </x-slot>
 
@@ -11,18 +11,18 @@
                 @csrf
 
                 <div class="mb-4">
-                    <label class="block">Nome</label>
+                    <label class="block">Nombre</label>
                     <input name="name" value="{{ old('name') }}" class="w-full border rounded p-2" required>
                     @error('name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="mb-4">
-                    <label class="block">Descrição</label>
+                    <label class="block">Descripción</label>
                     <textarea name="description" class="w-full border rounded p-2">{{ old('description') }}</textarea>
                 </div>
 
                 <div class="mb-4">
-                    <label class="block mb-1">Preço</label>
+                    <label class="block mb-1">Precio</label>
                     <div class="flex rounded border overflow-hidden w-full max-w-xs">
                         <input
                             type="text"
@@ -39,9 +39,9 @@
                 </div>
 
                 <div class="mb-4">
-                    <label class="block">Categoria</label>
+                    <label class="block">Categoría</label>
                     <select name="category_id" class="w-full border rounded p-2" required>
-                        <option value="">Selecione</option>
+                        <option value="">Seleccione</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
                                 {{ $category->name }}
@@ -53,10 +53,10 @@
 
                 <div class="flex gap-4 items-center">
                     <a href="{{ route('products.index') }}" class="text-black-600 hover:underline">
-                        Voltar
+                        Volver
                     </a>
                     <button class="bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">
-                        Salvar
+                        Guardar
                     </button>
                 </div>
 
@@ -72,7 +72,7 @@
         let value = e.target.value.replace(/\D/g, ''); 
         value = (Number(value) / 100).toFixed(2);
         value = value.replace('.', ','); 
-        value = 'R$ ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); 
+        value = 'S/ ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); 
         e.target.value = value;
     });
 </script>

@@ -18,19 +18,19 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
-                        {{ __('Categorias') }}
+                        {{ __('Categorías') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
-                        {{ __('Produtos') }}
+                        {{ __('Productos') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('menus.index')" :active="request()->routeIs('menus.*')">
-                        {{ __('Menus') }}
+                        {{ __('Menús') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
-                        {{ __('Orders') }}
+                        {{ __('Pedidos') }}
                     </x-nav-link>
                     
                 </div>
@@ -91,22 +91,22 @@
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
-                {{ __('Categorias') }}
+                {{ __('Categorías') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
-                {{ __('Produtos') }}
+                {{ __('Productos') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('menus.index')" :active="request()->routeIs('menus.*')">
-                {{ __('Menus') }}
+                {{ __('Menús') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
-                {{ __('Orders') }}
+                {{ __('Pedidos') }}
             </x-responsive-nav-link>
         </div>
 

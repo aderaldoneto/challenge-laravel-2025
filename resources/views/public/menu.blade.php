@@ -17,9 +17,9 @@
                 <h3 class="text-lg font-bold">{{ $product->name }}</h3>
                 <p class="text-gray-600">{{ $product->description }}</p>
                 <p class="text-blue-600 mt-2 font-semibold">
-                    R$ {{ number_format($product->price / 100, 2, ',', '.') }}
+                    S/ {{ number_format($product->price / 100, 2, ',', '.') }}
                 </p>
-                <p class="text-sm text-gray-400">Categoria: {{ $product->category->name ?? 'N/A' }}</p>
+                <p class="text-sm text-gray-400">Categoría: {{ $product->category->name ?? 'N/A' }}</p>
 
                 @php
                     $quantity = $cart[$product->id] ?? 0;
@@ -44,13 +44,13 @@
                 </div>
             </div>
         @empty
-            <p class="text-gray-500">Nenhum produto encontrado neste menu.</p>
+            <p class="text-gray-500">Ningún producto encontrado en este menú.</p>
         @endforelse
     </div>
 
     <div class="flex gap-4 items-center mt-6 ml-4">
         <a href="{{ route('public.index') }}" class="text-black-600 hover:underline">
-            Voltar
+            Volver
         </a>
     </div>
 </x-guest-layout>

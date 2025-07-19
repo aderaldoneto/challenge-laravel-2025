@@ -51,10 +51,10 @@ class MenuController extends Controller
             return redirect()->route('menus.show', $menu);
         } catch (\Throwable $e) {
             DB::rollBack();
-            \Log::error('Erro ao salva menu: ' . $e->getMessage(), [
+            \Log::error('Error al crear el menú: ' . $e->getMessage(), [
                 'trace' => $e->getTraceAsString(),
             ]);
-            return back()->withErrors(['error' => 'Erro ao criar menu.']);
+            return back()->withErrors(['error' => 'Error al crear el menú.']);
         }
 
     }
@@ -89,14 +89,14 @@ class MenuController extends Controller
 
         $menu->products()->sync($validated['products'] ?? []);
 
-        return redirect()->route('menus.show', $menu)->with('success', 'Menu atualizado com sucesso.');
+        return redirect()->route('menus.show', $menu)->with('success', 'Menú actualizado con éxito.');
     }
 
     public function destroy(Menu $menu)
     {
         $menu->delete();
 
-        return redirect()->route('menus.index')->with('success', 'Menu excluído com sucesso.');
+        return redirect()->route('menus.index')->with('success', 'Menú eliminado con éxito.');
     }
 
 }

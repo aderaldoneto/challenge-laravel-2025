@@ -93,7 +93,7 @@ class CartController extends Controller
     {
         $cart = session('cart', []);
         if (empty($cart)) {
-            return redirect()->route('checkout.form')->with('error', 'O carrinho está vazio.');
+            return redirect()->route('checkout.form')->with('error', 'El carrito está vacío.');
         }
 
         $validated = $request->validate([
@@ -137,15 +137,15 @@ class CartController extends Controller
 
             DB::commit();
             session()->forget('cart');
-            return redirect()->route('public.index')->with('success', 'Pedido realizado com sucesso! ID: #'. $order->id);
+            return redirect()->route('public.index')->with('success', '¡Pedido realizado con éxito! ID: #'. $order->id);
 
         } catch (\Throwable $e) {
 
             DB::rollBack();
-            \Log::error('Erro ao salvar pedido: ' . $e->getMessage(), [
+            \Log::error('Error al finalizar el pedido: ' . $e->getMessage(), [
                 'trace' => $e->getTraceAsString(),
             ]);
-            return redirect()->route('checkout.form')->withErrors('Erro ao finalizar pedido. Tente novamente.');
+            return redirect()->route('checkout.form')->withErrors('Error al finalizar el pedido. Inténtalo de nuevo.');
 
         }
     }

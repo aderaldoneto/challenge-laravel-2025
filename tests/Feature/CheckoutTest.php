@@ -33,5 +33,5 @@ test('user cannot checkout with empty cart', function () {
         ]);
 
     $response->assertRedirect(route('checkout.form'));
-    $response->assertSessionHas('error', 'O carrinho está vazio.');
+    $response->assertSessionHas('error', 'El carrito está vacío.');
 });

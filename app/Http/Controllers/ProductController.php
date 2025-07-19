@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['price'] = (float) str_replace(['R$', '.', ','], ['', '', '.'], trim($data['price']));
+        $data['price'] = (float) str_replace(['S/', '.', ','], ['', '', '.'], trim($data['price']));
         $data['price'] = $data['price'] * 100;
 
         $validated = validator($data, [

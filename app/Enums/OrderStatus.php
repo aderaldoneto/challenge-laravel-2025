@@ -12,9 +12,9 @@ enum OrderStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::Pending => 'Pendente',
+            self::Pending => 'Pendiente',
             self::Confirmed => 'Confirmado',
-            self::Delivered => 'Entregue',
+            self::Delivered => 'Entregado',
             self::Cancelled => 'Cancelado',
         };
     }

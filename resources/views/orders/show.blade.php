@@ -8,18 +8,18 @@
     <div class="py-6 max-w-3xl mx-auto space-y-6">
         <div class="bg-white p-4 shadow rounded">
             <p><strong>Cliente:</strong> {{ $order->client->name }}</p>
-            <p><strong>Endereço:</strong> {{ $order->client->address }}</p>
-            <p><strong>Data:</strong> {{ $order->created_at->format('d/m/Y H:i') }}</p>
-            <p><strong>Total:</strong> R$ {{ number_format($order->total / 100, 2, ',', '.') }}</p>
+            <p><strong>Dirección:</strong> {{ $order->client->address }}</p>
+            <p><strong>Fecha:</strong> {{ $order->created_at->format('d/m/Y H:i') }}</p>
+            <p><strong>Total:</strong> S/ {{ number_format($order->total / 100, 2, ',', '.') }}</p>
         </div>
 
         <div class="bg-white p-4 shadow rounded">
-            <h3 class="font-bold mb-2">Produtos:</h3>
+            <h3 class="font-bold mb-2">Productos:</h3>
             <ul class="list-disc list-inside">
                 @foreach ($order->products as $product)
                     <li>
                         {{ $product->name }} ({{ $product->pivot->quantity }}x) - 
-                        R$ {{ number_format(($product->pivot->price * $product->pivot->quantity) / 100, 2, ',', '.') }}
+                        S/ {{ number_format(($product->pivot->price * $product->pivot->quantity) / 100, 2, ',', '.') }}
                     </li>
                 @endforeach
             </ul>
@@ -40,13 +40,13 @@
                 </select>
 
                 <button class="bg-blue-600 text-black px-4 py-2 rounded hover:bg-blue-700">
-                    Atualizar Status
+                    Actualizar Status
                 </button>
             </form>
         </div>
         <div class="flex gap-4 items-center">
             <a href="{{ route('orders.index') }}" class="text-black-600 hover:underline">
-                Voltar
+                Volver
             </a>
         </div>
     </div>

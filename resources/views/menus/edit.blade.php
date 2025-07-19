@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Editar Menu
+            Editar Menú
         </h2>
     </x-slot>
 
@@ -12,13 +12,13 @@
                 @method('PUT')
 
                 <div class="mb-4">
-                    <label class="block">Nome</label>
+                    <label class="block">Nombre</label>
                     <input name="name" value="{{ old('name', $menu->name) }}" class="w-full border rounded p-2" required>
                     @error('name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="mb-4">
-                    <label class="block mb-1">Produtos</label>
+                    <label class="block mb-1">Productos</label>
                     <select name="products[]" multiple class="w-full border rounded p-2">
                         @foreach ($products as $product)
                             <option value="{{ $product->id }}"
@@ -32,10 +32,10 @@
 
                 <div class="flex gap-4 items-center">
                     <a href="{{ route('menus.show', $menu->id) }}" class="bg-yellow-400 px-4 py-2 rounded hover:bg-yellow-500">
-                        Voltar
+                        Volver
                     </a>
                     <button class="bg-blue-500 text-black px-4 py-2 rounded hover:bg-blue-600">
-                        Atualizar
+                        Actualizar
                     </button>
 
                     <a href="{{ route('menus.index') }}" class="text-black-600 hover:underline">

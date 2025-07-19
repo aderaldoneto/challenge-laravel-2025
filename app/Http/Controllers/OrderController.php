@@ -81,10 +81,17 @@ class OrderController extends Controller
             'status' => ['required', Rule::in(array_column(OrderStatus::cases(), 'value'))],
         ]);
 
+        $newStatus = $request->input('status');
+        if ($newStatus === OrderStatus::Delivered->value) {
+            cache()->forget("order_{$order->id}");
+            $order->delete();
+            return redirect()->route('orders.index')->with('success', 'Pedido entregado y eliminado con éxito.');
+        }
+
         $order->status = $request->input('status');
         $order->save();
 
-        return redirect()->route('orders.show', $order)->with('success', 'Status atualizado com sucesso.');
+        return redirect()->route('orders.show', $order)->with('success', 'Estado actualizado con éxito.');
     }
 
     /**

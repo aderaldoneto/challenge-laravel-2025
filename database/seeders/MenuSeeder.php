@@ -15,12 +15,12 @@ class MenuSeeder extends Seeder
      */
     public function run(): void
     {
-        $menus = ['Café da manhã', 'Almoço', 'Lanche', 'Janta', ];
+        $menus = ['Desayuno', 'Almuerzo', 'Merienda', 'Cena', ];
 
         $products = Product::all();
 
         if ($products->isEmpty()) {
-            $this->command->warn('Nenhuma produto encontrado. Execute o ProductSeeder antes.');
+            $this->command->warn('No se encontró ningún producto. Ejecute el ProductSeeder antes.');
             return;
         }
 

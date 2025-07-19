@@ -14,12 +14,12 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        $products = ['Pizza', 'Sushi', 'Yakisoba', 'Hamburguer', 'Hot Dog', 'Salada', 'Bolo', 'Sorvete'];
+        $products = ['Pizza', 'Sushi', 'Yakisoba', 'Hamburguesa', 'Perro caliente', 'Ensalada', 'Pastel', 'Helado'];
 
         $categories = Category::all();
 
         if ($categories->isEmpty()) {
-            $this->command->warn('Nenhuma categoria encontrada. Execute o CategorySeeder antes.');
+            $this->command->warn('No se encontró ninguna categoría. Ejecute el CategorySeeder primero.');
             return;
         }
 
