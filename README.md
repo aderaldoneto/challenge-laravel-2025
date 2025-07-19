@@ -1,35 +1,49 @@
-## Como rodar o projeto
+## Cómo ejecutar el proyecto
 
-1. Clone o repositório 
+1. Clona el repositorio
   git clone https://github.com/aderaldoneto/challenge-laravel-2025.git
   cd challenge-laravel-2025
 
-2. Configure o .env 
+2. Configura el archivo env
   cp .env.example .env
 
-3. Suba os containers 
+3. Levanta los contenedores
   docker-compose up -d --build
 
-4. Instale as dependências 
+4. Instala las dependencias
   docker-compose exec app composer install
 
-5. Chave da aplicação
+5. Genera la clave de la aplicación
   docker-compose exec app php artisan key:generate
 
-6. Execute as migrations e seeders
+6. Ejecuta las migraciones y seeders
   docker-compose exec app php artisan migrate:fresh --seed
 
-7. Execute os testes
+7. Ejecuta las pruebas
   docker-compose exec app php artisan test
 
 
-
-# Criar registros no banco de dados
+# Seeders individuales
 php artisan db:seed SuperAdminSeeder
 php artisan db:seed CategorySeeder
 php artisan db:seed ProductSeeder
 php artisan db:seed MenuSeeder
 
+
+# ¿Cómo asegurarías que esta API escale ante alta concurrencia?
+Usaría caché para datos públicos como menús y categorías.
+Mejoraría la base de datos con índices y usando with() para evitar consultas innecesarias.
+Acciones lentas, las pondría en una cola asíncrona.
+
+# ¿Qué estrategia seguirías para desacoplar la lógica del dominio de Laravel/Eloquent?
+Usar servicios o acciones para sacar la lógica del controlador.
+
+
+# ¿Cómo manejarías versiones de la API en producción?
+Crearía rutas estandarizadas como v1, v2, v3, etc., y organizaría los controladores en carpetas separadas.
+Mantendría activas las versiones antiguas por un tiempo para no romper nada.
+
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 # 🧪 OlaClick Backend Challenge - Laravel Edition

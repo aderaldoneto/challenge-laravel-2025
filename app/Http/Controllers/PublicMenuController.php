@@ -6,6 +6,7 @@ use App\Enums\OrderStatus;
 use App\Models\Menu;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class PublicMenuController extends Controller
@@ -13,15 +14,11 @@ class PublicMenuController extends Controller
 
     public function index(Request $request)
     {
-        $menus = Menu::all();
+        $menus = Cache::remember('public_menus', 3600, function () {
+            return Menu::with('products.category')->get();
+        });
 
-        $filters = $request->only(['id', 'phone', 'status']);
-
-        return view('public.index', [
-            'menus' => $menus,
-            'filters' => $filters,
-            'statuses' => OrderStatus::cases(),
-        ]);
+        return view('public.menu', compact('menus'));
     }
 
     public function show(string $slug): View
@@ -49,6 +46,14 @@ class PublicMenuController extends Controller
             'order' => $order,
         ]);
     }
+
+    public function update(Request $request, Menu $menu)
+    {
+        Cache::forget('public_menus');
+
+        return redirect()->route('menus.index')->with('success', 'Menu atualizado com sucesso.');
+    }
+
 
 
     
