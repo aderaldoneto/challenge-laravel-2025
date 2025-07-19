@@ -90,10 +90,10 @@ class CartController extends Controller
 
 
     public function submit(Request $request)
-    {        
+    {
         $cart = session('cart', []);
         if (empty($cart)) {
-            return redirect()->route('checkout.form')->withErrors('O carrinho está vazio.');
+            return redirect()->route('checkout.form')->with('error', 'O carrinho está vazio.');
         }
 
         $validated = $request->validate([
@@ -135,11 +135,8 @@ class CartController extends Controller
                 }
             }
 
-
             DB::commit();
-
             session()->forget('cart');
-
             return redirect()->route('public.index')->with('success', 'Pedido realizado com sucesso! ID: #'. $order->id);
 
         } catch (\Throwable $e) {

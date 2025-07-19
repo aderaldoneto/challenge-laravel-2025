@@ -1,3 +1,11 @@
+# Criar registros no banco de dados
+php artisan db:seed SuperAdminSeeder
+php artisan db:seed CategorySeeder
+php artisan db:seed ProductSeeder
+php artisan db:seed MenuSeeder
+
+
+
 # 🧪 OlaClick Backend Challenge - Laravel Edition
 
 ## 🎯 Objetivo

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class MenuController extends Controller
 {
@@ -24,19 +26,37 @@ class MenuController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:menus'],
             'products' => ['nullable', 'array'],
             'products.*' => ['exists:products,id'],
         ]);
 
-        $menu = Menu::create([
-            'name' => $validated['name'],
-            'slug' => $validated['slug'],
-        ]);
+        DB::beginTransaction();
 
-        $menu->products()->sync($validated['products'] ?? []);
+        try {
+            $menu = Menu::create([
+                'name' => $validated['name'],
+            ]);
 
-        return redirect()->route('menus.show', $menu)->with('success', 'Menu criado com sucesso.');
+            $slugBase = Str::slug($menu->name);
+            $slug = "{$slugBase}-{$menu->id}";
+
+            $menu->update([
+                'slug' => $slug,
+            ]);
+
+            $menu->products()->sync($validated['products'] ?? []);
+
+            DB::commit();
+
+            return redirect()->route('menus.show', $menu);
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            \Log::error('Erro ao salva menu: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return back()->withErrors(['error' => 'Erro ao criar menu.']);
+        }
+
     }
 
     public function show(Menu $menu)

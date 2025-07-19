@@ -17,12 +17,6 @@
                 </div>
 
                 <div class="mb-4">
-                    <label class="block">Slug</label>
-                    <input name="slug" value="{{ old('slug') }}" class="w-full border rounded p-2" required>
-                    @error('slug') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
-                </div>
-
-                <div class="mb-4">
                     <label class="block mb-1">Produtos</label>
                     <select name="products[]" multiple class="w-full border rounded p-2">
                         @foreach ($products as $product)
