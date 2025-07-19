@@ -18,6 +18,9 @@
         </div>
     </div>
     <div class="mt-6 flex gap-4">
+        <a href="{{ route('menus.index') }}" class="bg-yellow-400 px-4 py-2 rounded hover:bg-yellow-500">
+            Voltar
+        </a>
         <a href="{{ route('menus.edit', $menu) }}" class="bg-yellow-400 px-4 py-2 rounded hover:bg-yellow-500">Editar</a>
 
         <form method="POST" action="{{ route('menus.destroy', $menu) }}" onsubmit="return confirm('Tem certeza que deseja excluir este menu?')">

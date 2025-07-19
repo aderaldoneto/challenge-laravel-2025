@@ -16,9 +16,15 @@
                     @error('name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                 </div>
 
-                <button type="submit" class="bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">
-                    Salvar
-                </button>
+                <div class="flex gap-4 items-center">
+                    <a href="{{ route('categories.index') }}" class="text-black-600 hover:underline">
+                        Voltar
+                    </a>
+                    <button type="submit" class="bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">
+                        Salvar
+                    </button>
+                </div>
+
             </form>
         </div>
     </div>

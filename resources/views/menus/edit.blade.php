@@ -37,6 +37,9 @@
 
 
                 <div class="flex gap-4 items-center">
+                    <a href="{{ route('menus.show', $menu->id) }}" class="bg-yellow-400 px-4 py-2 rounded hover:bg-yellow-500">
+                        Voltar
+                    </a>
                     <button class="bg-blue-500 text-black px-4 py-2 rounded hover:bg-blue-600">
                         Atualizar
                     </button>

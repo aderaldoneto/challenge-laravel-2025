@@ -34,10 +34,14 @@
                     </select>
                 </div>
 
-
-                <button class="bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">
-                    Salvar
-                </button>
+                <div class="flex gap-4 items-center">
+                    <a href="{{ route('menus.index') }}" class="text-black-600 hover:underline">
+                        Voltar
+                    </a>
+                    <button class="bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">
+                        Salvar
+                    </button>
+                </div>
             </form>
         </div>
     </div>

@@ -28,6 +28,10 @@
                     <x-nav-link :href="route('menus.index')" :active="request()->routeIs('menus.*')">
                         {{ __('Menus') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
+                        {{ __('Orders') }}
+                    </x-nav-link>
                     
                 </div>
             </div>
@@ -98,6 +102,11 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('menus.index')" :active="request()->routeIs('menus.*')">
                 {{ __('Menus') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
+                {{ __('Orders') }}
             </x-responsive-nav-link>
         </div>
 

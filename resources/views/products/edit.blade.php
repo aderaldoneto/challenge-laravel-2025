@@ -52,9 +52,15 @@
                     @error('category_id') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                 </div>
 
-                <button class="bg-blue-500 text-black px-4 py-2 rounded hover:bg-blue-600">
-                    Atualizar
-                </button>
+                <div class="flex gap-4 items-center">
+                    <a href="{{ route('products.index') }}" class="text-black-600 hover:underline">
+                        Voltar
+                    </a>
+                    <button class="bg-blue-500 text-black px-4 py-2 rounded hover:bg-blue-600">
+                        Atualizar
+                    </button>
+                </div>
+
             </form>
         </div>
     </div>
