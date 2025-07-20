@@ -1,45 +1,45 @@
 ## Cómo ejecutar el proyecto
 
-1. Clona el repositorio
-  git clone https://github.com/aderaldoneto/challenge-laravel-2025.git
-  cd challenge-laravel-2025
+1. Clona el repositorio  
+  git clone https://github.com/aderaldoneto/challenge-laravel-2025.git  
+  cd challenge-laravel-2025  
 
-2. Configura el archivo env
-  cp .env.example .env
+2. Configura el archivo env  
+  cp .env.example .env  
 
-3. Levanta los contenedores
-  docker-compose up -d --build
+3. Levanta los contenedores  
+  docker-compose up -d --build  
 
-4. Instala las dependencias
-  docker-compose exec app composer install
+4. Instala las dependencias  
+  docker-compose exec app composer install  
 
-5. Genera la clave de la aplicación
-  docker-compose exec app php artisan key:generate
+5. Genera la clave de la aplicación  
+  docker-compose exec app php artisan key:generate  
 
-6. Ejecuta las migraciones y seeders
-  docker-compose exec app php artisan migrate:fresh --seed
+6. Ejecuta las migraciones y seeders  
+  docker-compose exec app php artisan migrate:fresh --seed  
 
-7. Ejecuta las pruebas
-  docker-compose exec app php artisan test
-
-
-# Seeders individuales
-php artisan db:seed SuperAdminSeeder
-php artisan db:seed CategorySeeder
-php artisan db:seed ProductSeeder
-php artisan db:seed MenuSeeder
+7. Ejecuta las pruebas  
+  docker-compose exec app php artisan test  
 
 
-# Funcionalidades 
-LIST
-GET http://localhost:8000/api/orders 
-Retorna las órdenes cuyo estado es diferente a delivered
-Cacheado por 30 segundos via Redis
+# Seeders individuales  
+php artisan db:seed SuperAdminSeeder  
+php artisan db:seed CategorySeeder  
+php artisan db:seed ProductSeeder  
+php artisan db:seed MenuSeeder  
 
-CREATE NEW ORDER
-POST http://localhost:8000/api/orders 
-Crea una orden con estado inicial initiated
-JSON:
+
+# Funcionalidades   
+LIST  
+GET http://localhost:8000/api/orders   
+Retorna las órdenes cuyo estado es diferente a delivered  
+Cacheado por 30 segundos via Redis  
+
+CREATE NEW ORDER  
+POST http://localhost:8000/api/orders   
+Crea una orden con estado inicial initiated  
+JSON:  
 {
   "client_name": "Carlos Gómez",
 	"client_phone": "+51 999 999 999",
@@ -48,30 +48,30 @@ JSON:
     { "description": "Lomo saltado", "quantity": 1, "unit_price": 60 },
     { "description": "Inka Kola", "quantity": 2, "unit_price": 10 }
   ]
-}
+}  
 
-SEE DETAILS
-GET http://localhost:8000/api/orders/{id} 
-Muestra todos los datos: cliente, ítems, total y estado actual
+SEE DETAILS  
+GET http://localhost:8000/api/orders/{id}   
+Muestra todos los datos: cliente, ítems, total y estado actual  
 
-NEXT STATUS
-POST http://localhost:8000/api/orders/{id}/advance 
-Avanza estados: initiated > confirmed > sent > delivered
-Al llegar a delivered, la orden se elimina de la base de datos y del caché
-
-
-# ¿Cómo asegurarías que esta API escale ante alta concurrencia?
-Usaría caché para datos públicos como menús y categorías.
-Mejoraría la base de datos con índices y usando with() para evitar consultas innecesarias.
-Acciones lentas, las pondría en una cola asíncrona.
-
-# ¿Qué estrategia seguirías para desacoplar la lógica del dominio de Laravel/Eloquent?
-Usar servicios o acciones para sacar la lógica del controlador.
+NEXT STATUS  
+POST http://localhost:8000/api/orders/{id}/advance   
+Avanza estados: initiated > confirmed > sent > delivered  
+Al llegar a delivered, la orden se elimina de la base de datos y del caché  
 
 
-# ¿Cómo manejarías versiones de la API en producción?
-Crearía rutas estandarizadas como /api/v1, /api/v2, /api/v3, etc., y organizaría los controladores en carpetas separadas.
-Mantendría activas las versiones antiguas por un tiempo para no romper nada.
+# ¿Cómo asegurarías que esta API escale ante alta concurrencia?  
+Usaría caché para datos públicos como menús y categorías.  
+Mejoraría la base de datos con índices y usando with() para evitar consultas innecesarias.  
+Acciones lentas, las pondría en una cola asíncrona.  
+
+# ¿Qué estrategia seguirías para desacoplar la lógica del dominio de Laravel/Eloquent?  
+Usar servicios o acciones para sacar la lógica del controlador.  
+ 
+
+# ¿Cómo manejarías versiones de la API en producción?  
+Crearía rutas estandarizadas como /api/v1, /api/v2, /api/v3, etc., y organizaría los controladores en carpetas separadas.  
+Mantendría activas las versiones antiguas por un tiempo para no romper nada.  
 
 # ------------------------------------------------
 
