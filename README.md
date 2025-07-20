@@ -30,6 +30,12 @@ php artisan db:seed ProductSeeder
 php artisan db:seed MenuSeeder  
 
 
+# Acesso ao navegador  
+http://localhost:{PORTA}/  
+Login: admin@admin.com  
+Senha: password  
+
+
 # Funcionalidades   
 LIST  
 GET http://localhost:8000/api/orders   
