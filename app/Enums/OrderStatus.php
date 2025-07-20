@@ -4,28 +4,38 @@ namespace App\Enums;
 
 enum OrderStatus: string
 {
-    case Pending = 'pending';
+    case Initiated = 'initiated';
     case Confirmed = 'confirmed';
+    case Sent = 'sent';
     case Delivered = 'delivered';
-    case Cancelled = 'cancelled';
 
     public function label(): string
     {
         return match ($this) {
-            self::Pending => 'Pendiente',
+            self::Initiated => 'Initiated',
             self::Confirmed => 'Confirmado',
-            self::Delivered => 'Entregado',
-            self::Cancelled => 'Cancelado',
+            self::Sent => 'Sent',
+            self::Delivered => 'Delivered',
+        };
+    }
+
+    public static function next(OrderStatus $current): ?OrderStatus
+    {
+        return match ($current) {
+            self::Initiated => self::Confirmed,
+            self::Confirmed => self::Sent,
+            self::Sent => self::Delivered,
+            self::Delivered => null,
         };
     }
 
     public function color(): string
     {
         return match ($this) {
-            self::Pending => 'gray',
+            self::Initiated => 'gray',
             self::Confirmed => 'blue',
+            self::Sent => 'Sent',
             self::Delivered => 'green',
-            self::Cancelled => 'red',
         };
     }
 }

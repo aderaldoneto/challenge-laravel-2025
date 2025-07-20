@@ -18,7 +18,13 @@ class PublicMenuController extends Controller
             return Menu::with('products.category')->get();
         });
 
-        return view('public.menu', compact('menus'));
+        $filters = $request->only(['id', 'phone', 'status']);
+
+        return view('public.index', [
+            'menus' => $menus,
+            'filters' => $filters,
+            'statuses' => OrderStatus::cases(),
+        ]);
     }
 
     public function show(string $slug): View

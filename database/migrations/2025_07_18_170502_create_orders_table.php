@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->integer('total'); 
             $table->enum('status', array_column(OrderStatus::cases(), 'value'))
-                ->default(OrderStatus::Pending->value);
+                ->default(OrderStatus::Initiated->value);
             $table->timestamps();
         });
     }

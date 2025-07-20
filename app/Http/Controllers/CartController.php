@@ -120,7 +120,7 @@ class CartController extends Controller
 
             $order = Order::create([
                 'client_id' => $client->id,
-                'status' => OrderStatus::Pending,
+                'status' => OrderStatus::Initiated,
                 'total' => $total,
             ]);
 

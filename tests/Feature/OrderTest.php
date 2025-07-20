@@ -30,7 +30,7 @@ test('user can create order with products', function () {
 
     assertDatabaseHas('orders', [
         'client_id' => $client->id,
-        'status' => 'pending',
+        'status' => 'initiated',
     ]);
 
     $order = Order::where('client_id', $client->id)->latest()->first();

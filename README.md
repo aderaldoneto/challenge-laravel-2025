@@ -30,6 +30,36 @@ php artisan db:seed ProductSeeder
 php artisan db:seed MenuSeeder
 
 
+# Funcionalidades 
+LIST
+GET http://localhost:8000/api/orders 
+Retorna las órdenes cuyo estado es diferente a delivered
+Cacheado por 30 segundos via Redis
+
+CREATE NEW ORDER
+POST http://localhost:8000/api/orders 
+Crea una orden con estado inicial initiated
+JSON:
+{
+  "client_name": "Carlos Gómez",
+	"client_phone": "+51 999 999 999",
+  "client_address": "Av. Peru 123",
+  "items": [
+    { "description": "Lomo saltado", "quantity": 1, "unit_price": 60 },
+    { "description": "Inka Kola", "quantity": 2, "unit_price": 10 }
+  ]
+}
+
+SEE DETAILS
+GET http://localhost:8000/api/orders/{id} 
+Muestra todos los datos: cliente, ítems, total y estado actual
+
+NEXT STATUS
+POST http://localhost:8000/api/orders/{id}/advance 
+Avanza estados: initiated > confirmed > sent > delivered
+Al llegar a delivered, la orden se elimina de la base de datos y del caché
+
+
 # ¿Cómo asegurarías que esta API escale ante alta concurrencia?
 Usaría caché para datos públicos como menús y categorías.
 Mejoraría la base de datos con índices y usando with() para evitar consultas innecesarias.
@@ -40,10 +70,10 @@ Usar servicios o acciones para sacar la lógica del controlador.
 
 
 # ¿Cómo manejarías versiones de la API en producción?
-Crearía rutas estandarizadas como v1, v2, v3, etc., y organizaría los controladores en carpetas separadas.
+Crearía rutas estandarizadas como /api/v1, /api/v2, /api/v3, etc., y organizaría los controladores en carpetas separadas.
 Mantendría activas las versiones antiguas por un tiempo para no romper nada.
 
-# --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------
 
 
 # 🧪 OlaClick Backend Challenge - Laravel Edition

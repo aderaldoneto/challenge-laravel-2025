@@ -27,4 +27,5 @@ class Order extends Model
             ->withPivot('quantity', 'price');
     }
 
+
 }
