@@ -30,7 +30,7 @@ php artisan db:seed ProductSeeder
 php artisan db:seed MenuSeeder  
 
 
-# Acesso ao navegador  
+# Acceso al navegador    
 http://localhost:{PORTA}/  
 Login: admin@admin.com  
 Senha: password  
